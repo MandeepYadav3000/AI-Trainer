@@ -1,21 +1,100 @@
+<MagicButton@MagicBehavior+MDRectangleFlatButton>
+
+
+<ItemDrawer>:
+    theme_text_color: "Custom"
+    on_release: self.parent.set_color_item(self)
+
+    IconLeftWidget:
+        id: icon
+        icon: root.icon
+        theme_text_color: "Custom"
+        text_color: root.text_color
+
+
+<ContentNavigationDrawer>:
+    orientation: 'vertical'
+
+    AnchorLayout:
+        anchor_x: "left"
+        size_hint_y: None
+        height: avatar.height
+
+        Image:
+            id: avatar
+            size_hint: (1,1)
+            source: "profile.jpg"
+
+    MDLabel:
+        text: "User"
+        font_style: "Subtitle1"
+        size_hint_y: None
+        height: self.texture_size[1]
+
+    MDLabel:
+        text: "user@gmail.com"
+        size_hint_y: None
+        font_style: "Caption"
+        height: self.texture_size[1]
+
+    ScrollView:
+
+        DrawerList:
+            id: md_list
+            border: 30,30,30,30
+
+            MDList:
+                OneLineIconListItem:
+                    text: "Profile"
+
+                    IconLeftWidget:
+                        icon: "face-profile"
+
+
+
+                OneLineIconListItem:
+                    text: "Upload"
+
+                    IconLeftWidget:
+                        icon: "upload"
+
+
+                OneLineIconListItem:
+                    text: "Logout"
+
+                    IconLeftWidget:
+                        icon: "logout"
+
 MDScreen:
     name: "main_page"
-    MDBoxLayout:
-        orientation: 'vertical'
-        MDTopAppBar:
-            title: 'LOGO'
+    MDNavigationLayout:
+        MDScreenManager:
+            MDScreen:
+                MDBoxLayout:
+                    orientation: 'vertical'
+                    MDTopAppBar:
+                        title: 'LOGO'
+                        halign: 'left'
+                        elevation: 0
+                        left_action_items: [['menu', lambda x: nav_drawer.set_state('toggle')]]
+                    Widget:
 
-            left_action_items: [["menu", lambda x: app.profile_page()]]
-            right_action_items: [["dots-vertical", lambda x: app.settings_page()]]
-            elevation:4
+                    MDLabel:
+                        text: 'hello world'
 
-        MDLabel:
-            text: 'hello world'
-            halign: 'center'
-            
-        MDBottomAppBar:
-            MDTopAppBar:
-                icon: 'home-outline'
-                type: 'bottom'
-                left_action_items: [["progress-check", lambda x: setting_page()]]
-                right_action_items: [["clock", lambda x: app.settings_page()]]
+                        halign: 'center'
+
+                    MDBottomAppBar:
+                        MDTopAppBar:
+                            icon: 'home-outline'
+                            type: 'bottom'
+                            elevation: 0
+                            left_action_items:[ ["progress-check"]]
+                            right_action_items: [["clock"]]
+
+
+        MDNavigationDrawer:
+            id: nav_drawer
+
+            ContentNavigationDrawer:
+                id: content_drawer

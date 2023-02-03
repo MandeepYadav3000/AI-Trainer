@@ -1,3 +1,5 @@
+<MagicButton@MagicBehavior+MDRectangleFlatButton>
+
 MDScreen:
 
     name: "getstarted"
@@ -5,20 +7,13 @@ MDScreen:
         source: "asset/image.png"
         pos_hint: {"center_x":.5, "center_y":.65}
 
-    Button:
+    MagicButton:
         id: check
         text: "Get Started"
         size_hint: .66, .065
         pos_hint: {"center_x":.5, "center_y":.18}
-        background_color: 0,0,0,0
         font_name: "BPoppins"
         on_release:
-            root.manager.transition.direction = "left"
+            self.wobble()
+            root.manager.transition.direction = 'left'
             root.manager.current = "signup"
-        canvas.before:
-            Color:
-                rgb: rgba(0, 191, 255, 255)
-            RoundedRectangle:
-                size: self.size
-                pos: self.pos
-                radius: [5]

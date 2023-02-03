@@ -56,10 +56,10 @@ with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as 
             angle = calculate_angle(shoulder, elbow, wrist)
 
             # Visualize angle
-            # cv2.putText(image, str(angle),
-            #             tuple(np.multiply(elbow, [640, 480]).astype(int)),
-            #             cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2, cv2.LINE_AA
-            #             )
+            cv2.putText(image, str(angle),
+                        tuple(np.multiply(elbow, [640, 480]).astype(int)),
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2, cv2.LINE_AA
+                        )
 
             # Curl counter logic
             if angle > 160:
@@ -91,10 +91,10 @@ with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as 
         #             cv2.FONT_HERSHEY_SIMPLEX, 2, (255, 255, 255), 2, cv2.LINE_AA)
 
         # Render detections
-        # mp_drawing.draw_landmarks(image, results.pose_landmarks, mp_pose.POSE_CONNECTIONS,
-        #                           mp_drawing.DrawingSpec(color=(245, 117, 66), thickness=2, circle_radius=2),
-        #                           mp_drawing.DrawingSpec(color=(245, 66, 230), thickness=2, circle_radius=2)
-        #                           )
+        mp_drawing.draw_landmarks(image, results.pose_landmarks, mp_pose.POSE_CONNECTIONS,
+                                  mp_drawing.DrawingSpec(color=(245, 117, 66), thickness=2, circle_radius=2),
+                                  mp_drawing.DrawingSpec(color=(245, 66, 230), thickness=2, circle_radius=2)
+                                  )
 
         cv2.imshow('Mediapipe Feed', image)
 
